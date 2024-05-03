@@ -122,24 +122,21 @@ public class TMPage {
             int totalPages = Integer.parseInt(driver.findElement(By.xpath("//span[contains(text(),'last page')]/parent::a")).getAttribute("data-page"));
             log.info("totalpages for table" + totalPages);
             driver.findElement(By.xpath("//a[contains(@data-page, '1')]/span[contains(text(),'Go to the first page')]")).click();
-            //System.out.print(CodeValueText);
-            log.info("This the code value text" + CodeValueText);
-
 
             boolean recordFound = false;
 
             for (int i = 1; i <= totalPages; i++) {
                 // get the number of rows for a page so we can loop through all rows
                 int pageRows = driver.findElements(By.xpath("//div[@id=\"tmsGrid\"]/div[3]/table/tbody/tr")).size();
-                log.info("page no:" + i + " no of rows:" + pageRows);
+
 
                 for (int j = 1; j <= pageRows; j++) {
                     String CodeValue = driver.findElement(By.xpath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[" + j + "]/td[1]"))
                             .getText();
-                    log.info("code value"+ CodeValue);
+
 
                     if (CodeValue.equals(CodeValueText)) {
-                        log.info("im here");
+
                         recordFound = true;
                         break;
                     }
@@ -158,6 +155,7 @@ public class TMPage {
                     // Check if the record is found
                     if (recordFound) {
                         Assert.assertTrue(recordFound, "Record saved successfully");
+                        log.info("user record saved sucessfully");
                     } else {
                         Assert.fail("Record not saved ");
                     }
@@ -166,6 +164,7 @@ public class TMPage {
                     // Check if the Edit record is found
                     if (recordFound) {
                         Assert.assertTrue(recordFound, "Editted Record saved successfully");
+                        log.info("user record editted successfully");
                     } else {
                         Assert.fail("Edit Record not saved");
                     }

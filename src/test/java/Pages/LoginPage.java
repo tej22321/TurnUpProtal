@@ -26,7 +26,7 @@ public class LoginPage {
 
         //maximise the page
         driver.manage().window().maximize();
-
+        log.info("maximised the browser");
 
         // Finding the username text field
         WebElement UserNameField = driver.findElement(By.id("UserName"));
@@ -56,8 +56,7 @@ public class LoginPage {
 
         //verify user logged In
             Assert.assertTrue(UserLoggedIn.getText().contains("hari"),"user logged in");
-
-         log.info("user logged in successfully");
+            log.info("user logged in successfully");
 
     }
 
